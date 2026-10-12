@@ -39,7 +39,7 @@ Prediction is the core algorithm that is essential to the ML Model Component. Th
  - **Why this one**
    - Each model comes with one and only one prediction algorithm. There are no alternatives
  - **Edge cases**
-   - Improper input (e.g. containing NaNs or null values) can be caught before being sent to the model via input validation, so time isn't wasted for the model to catch the error and for us to interpret the panic. This will be outputted to the user as a UI popup saying "An error occurred in reading the signs. Please try again."
+   - Improper input (e.g. containing NaNs or null values) can be caught before being sent to the model via input validation, so time isn't wasted for the model to catch the err or and for us to interpret the panic. This will be outputted to the user as a UI popup saying "An error occurred in reading the signs. Please try again."
    - If an input is duplicated and sent to the ML Model twice, it'll read the duplication as if it were another input and output a classification accordingly. It shouldn't be an error. 
    - Multiple users of the application won't interfere with each other. Each request to the model can be queued so requests that appear at the same time won't interfere with one another. 
    - An internal failure of the model can result in a HTTP Status Code 500 Response or as an exception which would then prompt a UI component, e.g. "An error occurred in determining the signs. Please try again."
@@ -47,7 +47,7 @@ Prediction is the core algorithm that is essential to the ML Model Component. Th
 # Build-versus-reuse decisions
 
 | Subcomponent Name | What it is | Build or Reuse | Library or service (if reused) | License (if reused) | Reasoning |
-|---|---|---|---|---|---|
+|---|---|---|---|---|---| 
 | Model | The model to be trained and conduct the predictions | Build | TensorFlow | Apache-2.0 | Building will let us learn how to design, build, and train a deep learning model for landmark classification, and let us design the shape of the inputs and outputs |
 | Model Input Processor | Processes the HTTP request from the UI client and transforms the data into tensor input for the model | Build | Python request / JSON processing library (built-in Python `json` and third-party `requests` libraries) | Apache-2.0 for `requests` | Request/JSON payload processing is simple enough that we won't need to use a tool other than built-in libraries |
 | Model Output Builder | Takes the output of the model, identifies the class that it's associated with, and builds the HTTP request and JSON payload to be sent to the Results Processing component | Build | Python built-in `json` and third-party `requests` libraries | Apache-2.0 for `requests` | Same as above, the implementation doesn't require non-built-in libraries |
@@ -74,9 +74,9 @@ Note: the shape of the tensors are unknown, and depend on the data (which we cur
 |---|---|---|
 | Class | String | From list of classes derived from the data |
 | Confidence | Float | 0-1 |
-| Face landmarks | Tensor of ints | 0-255, for each entry | 
-| Left hand landmarks | Tensor of ints | 0-255, for each entry |
-| Right Hand landmarks | Tensor of ints | 0-255, for each entry |
+| Face landmarks | Tensor of floats | 0-1, for each entry | 
+| Left hand landmarks | Tensor of floats | 0-1, for each entry |
+| Right Hand landmarks | Tensor of floats | 0-1, for each entry |
 
  - ERROR RESPONSES
    - 500 - internal server error - internal error within the model prediction
@@ -85,20 +85,24 @@ Note: the shape of the tensors are unknown, and depend on the data (which we cur
    - Payload: 
 ```json
 {
-  "face": [15, 26, 49, 10, 254, 21], // filler values, actual values/shape unknown
-  "left": [15, 23, 10, 43, 12, 43],
-  "right": [17, 23, 9, 43, 12, 143]
+  "face": [0.1, 0.3, 0.7, 0.132, 0.52, ...], // filler values, actual values/shape unknown
+  "left": [0.56, 0.12, 0.61, 0.13, ...],
+  "right": [0.41, 0.52, 0.12, 0.95, 0.68, ...],
+  "body": [0.1, 0.53, 0.21, ...],
 }
 ```
+**Note:** For Kaggle competitions, there are 21 landmarks each for the left and right hands (where each index corresponds to a different part of the hand), 33 for the body, and 468 for the face. This format I believe comes from MediaPipe Holistic landmarks. For the competitions, most of the face and body landmarks get dropped, save for stuff like lips and shoulders. The values correspond to location on image, 0 is left edge, 1 is right edge.  
+
  - response
    - Response status code 200
 ```json
 {
   "class": "Dog",
   "confidence": 0.78,
-  "face": [15, 26, 49, 10, 254, 21],
-  "left": [15, 23, 10, 43, 12, 43],
-  "right": [17, 23, 9, 43, 12, 143]
+  "face": [0.1, 0.3, 0.7, 0.132, 0.52, ...], // filler values, actual values/shape unknown
+  "left": [0.56, 0.12, 0.61, 0.13, ...],
+  "right": [0.41, 0.52, 0.12, 0.95, 0.68, ...],
+  "body": [0.1, 0.53, 0.21, ...],
 }
 ```
    - Response status code 500
@@ -115,7 +119,7 @@ Note: the shape of the tensors are unknown, and depend on the data (which we cur
 
 # Technology choices with justification. 
 
-We will use python as a backend language. All of our team has experience using Python, and Python is a cornerstone language for AI/ML for its associated libraries and frameworks. Python, I believe, has its own license that is open-source and GPL compliant (https://docs.python.org/3/license.html). Python has significant community support, but is known for having performance issues compared with lower-level languages such as C++. I think this is more than made up for its significant community support and powerful AI/ML libraries. Python has no cost associated with it.
+We will use Python as a backend language. All of our team has experience using Python, and Python is a cornerstone language for AI/ML for its associated libraries and frameworks. Python, I believe, has its own license that is open-source and GPL compliant (https://docs.python.org/3/license.html). Python has significant community support, but is known for having performance issues compared with lower-level languages such as C++. I think this is more than made up for its significant community support and powerful AI/ML libraries. Python has no cost associated with it.
 
 For the frontend, we will be using React JavaScript. Although the frontend won't have major functionality, React nevertheless simplifies UI/UX development and opens the door for potential future expansion of the UI. One of our team members has significant experience with React, while another has experience with JavaScript, so team skill fit isn't optimal. However, since we're deploying our app in the browser, we have to use JavaScript or a JavaScript framework, so it's our best option. React has Creative Commons licensing (https://github.com/reactjs/react.dev/blob/main/LICENSE-DOCS.md) and is free and open source. React is known for being slower client-side for its Client-Side Rendering, but our app will be simple enough that it shouldn't add significant latency. Alternatively, we considered vanilla JavaScript, as our UI won't be complex and utilizing a framework such as React may add unnecessary complexity, but we decided otherwise for the one major reason. That reason was the possibility of future expansion of the UI complexity, where vanilla JavaScript is difficult to use with a complex UI compared with a framework, so implementing a framework early opens that opportunity. 
 
