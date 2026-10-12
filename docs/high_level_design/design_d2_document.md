@@ -15,10 +15,7 @@ Team: Braden Monnin, Connor Slutsky, Isaac Dowdy
 
 
 # Finished components, the D2 diagrams. 
-For every component not fully detailed in D1: 
-1) a data model (or the words "no persistent data"), 
-2) its behavior as an algorithm entry, state machine, or step list, and 
-3) its interface as endpoints, message formats, or signatures with errors. 
+For every component not fully detailed in D1: 1) a data model (or the words "no persistent data"), 2) its behavior as an algorithm entry, state machine, or step list, and 3) its interface as endpoints, message formats, or signatures with errors. 
 Give the glue components (authentication, notifications, configuration, logging) the same treatment. Revisit the D0 interfaces and revise any that grew too many parameters or leak internals.
 
  - do we have glue components?
@@ -55,16 +52,6 @@ One row per requirement, functional and non-functional: ID and short text, prior
 (an entity, endpoint, algorithm, or figure, not a component name alone)
 , and how. Explain every gap; never leave a cell blank. Run the check in reverse too, because a component with no requirement behind it is scope creep.  
 
- - return guess and stats in less than 5 seconds
- - be able to determine all fingerspelled letters of the alphabet
- - be able to determine 50 signs in addition to alphabet
- - display error message and prompt reinput on improper input
- - the system extract landmarks from webcam footage
- - determines confidence and sign accuracy, displays to user
- - displays Processing... icon when actively processing
- - be able to handle multiple users simultaneously
- - supports both left and right handed signers
-
 | ID | Requirement | F/NF | Priority | Design Elements | How Addressed |
 | ---| ---         | ---  |  ---     | --- | --- |
 |1|Return prediction in less than 5 seconds|NF|High|Appropriate ML Model ????|We will implement model that can output a prediction in a timely manner|
@@ -73,7 +60,7 @@ One row per requirement, functional and non-functional: ID and short text, prior
 |4|Be able to extract landmarks from webcam footage|F|High|MediaPipe|MediaPipe can determine facial and hand landmarks from images|
 |5|Be able to accurately (~85%) predict signs that involve motion|NF|Medium|Input Processing and ML Model (???)|Input processing should handle a sequence of landmarks (to simulate movement), and the ML Model should be able to form a prediction based on a sequence of landmarks|
 |6|Achieve overall accuracy of roughly 85%|NF|High|ML Model???|We will implmement an ML model that is accurate enough to classify signs correct 85% of the time|
-|7|Display confidence and sign accuracy along with prediction|F|High|||
+|7|Display confidence and sign accuracy along with prediction|F|High|TODO|TODO|
 |8|Display 'Processing...' icon when actively processing|F|Medium|UI|The UI will, on submission, display Processing... icon until a response is received from Results Processing|
 |9|Be able to handle multiple users simultaneously|F|High|Queued requests|Queueing requests will allow the model to not be overwhelmed and predict sequentially, even on simultaneous inputs|
 |10|Support both left and right-handed signers|F|High|ML Model???|We will implement a model that can accurately infer signs from right handed and left handed input|
@@ -90,10 +77,10 @@ Mark the decisions the peer review changed, and reference the D0 decision log ra
  4) We chose Azure as our final deployment of our app because more than one member of our team has experience using Azure.
  5) 5
  6) 6
- 7) _7_
- 8) _8_
- 9) _9_
- 10) _10_
+ 7) _7 maybe_
+ 8) _8 maybe_
+ 9) _9 maybe_
+ 10) _10 maybe_
 
 
 # Peer design review notes. 
