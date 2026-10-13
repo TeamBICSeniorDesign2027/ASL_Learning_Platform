@@ -18,6 +18,54 @@ Team: Braden Monnin, Connor Slutsky, Isaac Dowdy
 For every component not fully detailed in D1: 1) a data model (or the words "no persistent data"), 2) its behavior as an algorithm entry, state machine, or step list, and 3) its interface as endpoints, message formats, or signatures with errors. 
 Revisit the D0 interfaces and revise any that grew too many parameters or leak internals.
 
+## Component (External): Video Intake
+
+### Overview
+Video Intake is handled predominantly by existing frameworks, notably with the JS/HTML5 MediaDevices API. It will record and encode webcam footage of the user performing signs.
+
+### Data Model
+No persistent storage.
+
+### Behavior
+1. User enables webcam
+2. Webcam begins recording
+3. User performs signs
+4. Webcam via direct function call sends video data to MediaPipe framework
+
+### Interface
+No inputs (besides enabled webcam). Returns JS MediaStream object (https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia).
+
+## Component (External): Input Processing
+
+### Overview
+
+This component is predominantly external as it's handled by the MediaPipe framework. This component will take the video data from the Video Intake component, determine the landmarks of the user's signs from the video data, and construct an HTTP request to the backend for prediction.
+
+### Data Model
+
+No persistent data
+
+### Behavior
+
+1) Pass video footage to MediaPipe
+2) Get landmarks from function
+3) Construct request to be sent to model (with sign_window_id and landmarks)
+4) Send request to ML Model component
+
+### Interface
+
+Inputs - JS MediaStream object
+
+Outputs - 
+```json
+{
+  "sign_window_id": 17,
+  "face": [[[0.42, 0.53], [0.45, 0.10], "..."], [[0.47, 0.67], [0.67, 0.67], "..."], "..."],
+  "left": [[[0.43, 0.54], [0.46, 0.20], "..."], [[0.46, 0.51], [0.44, 0.39], "..."], "..."],
+  "right": [[[0.41, 0.52], [0.44, 0.50], "..."], [[0.42, 0.51], [0.45, 0.49], "..."], "..."],
+}
+```
+
 
 ## Component: Results Processing
 
