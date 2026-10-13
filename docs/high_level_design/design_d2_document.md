@@ -178,6 +178,90 @@ Signs that move are scored by shape, not motion. Each frame is compared on its o
 - Two-handed signs. We may need a way to more elegantly handle these.
 - The proposed values (threshold 0.80, deviation tolerance 0.25)
 
+
+## Component: Send Feedback
+
+### Scope
+
+Send Feedback is the front-end user interface component responsible for presenting the final English translation, hand-shape corrections, or system warnings to the user. It takes in the in the output from Results Processing and translates the raw data into visual UI updates to the learner's screen. 
+
+### Data Model
+
+**Persistent user data: none.** The component only holds the local UI for the current sign_window_id being rendered.
+
+### Interface
+
+| ID | Direction | Operation | Format | Protocol | Errors |
+| ---| ---       | ---       | ---    | ---      | ---    |
+| F-IN | From Results Processing (revised D0 I9)| `render(payload: FeedbackPayload)` | JSON in | HTTP `POST /results` (proposed), or an in-memory call if co-located | Malformed JSON, missing `sign_window_id`, or missing `status` results in the payload being silently dropped to prevent crashing the video feed. |
+| F-OUT | To User's Screen | UI Update | UI Elements | React state render | Render errors are caught by React error boundaries; a faulty frame drops silently, preserving the live webcam view. |
+
+
+**F-IN, success** (recognized):
+
+
+```json
+{
+  "sign_window_id": 17,
+  "status": "recognized",
+  "recognized_text": "C",
+  "overall_confidence": 0.92,
+  "shape": {
+    "score": 0.78,
+    "landmarks": [
+      { "landmark": 0, "deviation": 0.02, "dx": 0.00, "dy": 0.01 },
+      { "landmark": 4, "deviation": 0.31, "dx": 0.12, "dy": -0.05 },
+      "... one entry per landmark, 21 in total"
+    ]
+  },
+  "error_code": null
+}
+```
+
+**F-IN, error** (error):
+
+```json
+{
+  "sign_window_id": 19,
+  "status": "error",
+  "recognized_text": null,
+  "overall_confidence": null,
+  "shape": null,
+  "error_code": "MODEL_ERROR"
+}
+```
+
+**F-IN, low confidence** (not_recognized):
+
+```json
+{
+  "sign_window_id": 18,
+  "status": "not_recognized",
+  "recognized_text": null,
+  "overall_confidence": 0.45,
+  "shape": null,
+  "error_code": null
+}
+```
+
+| `status` | When it is triggered | Text Overlay | Confidence Meter` | `shape` |
+| --- | --- | --- | --- | --- |
+| `recognized` | Valid sign recognized with high confidence | Displays `recognized_text` | Filled to percentage based on `overall_confidence` | Draws directional arrows for landmarks where deviation > visual threshold |
+| `not_recognized` | Sign processed but falls below confidence threshold | "Sign not recognized. Please try again." | Filled to percentage based on overall_confidence | Cleared / Hidden |
+| `error` | System, input, or model failure | User-friendly warning mapped from error_code | Hidden | Cleared / Hidden |
+
+When drawing the Overlay, `dx` and `dy` from the shape.landmarks array dictate the direction of visual correction arrows rendered over the user's hand joints. A positive `dx` translates to a rightward-pointing arrow on the screen, and a positive `dy` translates to a downward-pointing arrow, directly guiding the learner to adjust their formation.
+
+### Behavior
+
+Steps:
+
+1. **Receive.** The component listens for an incoming `FeedbackPayload`. If a new `sign_window_id` is received, clear the previous frame's visual feedback.
+2. **Evaluate Status.** Parse the status field of the payload to determine the UI state. If `status` == `"error"`, map the `error_code` to a user-friendly warning banner. Stop processing. If `status` == `"not_recognized"`, display a subtle prompt asking the user to reposition or try again, and show the low overall_confidence score. Stop processing. If `status` == `"recognized"`, proceed.
+3. **Render Text & Confidence.** Update the primary UI text overlay with the `recognized_text`. Update the confidence meter using the `overall_confidence`.
+4. **Render Shape Feedback.** If `shape` is not null, extract the `shape.score` and display an accuracy rating. Then, iterate through the 21 entries in `shape.landmarks`. For any landmark where deviation exceeds a visual threshold, draw a directional indicator on the webcam canvas using `dx` and `dy`.
+5. **Clear Stale State.** If no new payload is received within a timeout window, fade out the current feedback to prevent stale data from lingering on screen.
+
 # Edge cases and error handling. 
 One table with columns for ID, component, category, the edge case, and the design decision. Cover all four categories from class for each component: boundary values, timing and concurrency, bad or missing input, and external dependencies. Every row needs a decided behavior (retry, degrade, fall back, or surface an error), a named handler, and a note on whether it is recoverable. At least one diagram must show error paths, not only the happy path.
 
