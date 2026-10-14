@@ -323,8 +323,3 @@ Mark the decisions the peer review changed, and reference the D0 decision log ra
 
 # Peer design review notes. 
 see docs/high_level_design/Peer_Review_Notes.md
-
-# Suggestions
-- Walk the D0 diagram box by box before class and assign what is missing to owners. That audit is faster than rediscovering the gaps in the review.
-- Do not skip an edge-case row because the answer is hard. That row is where the reviewers will focus.
-- Draw the decisions and failure outcomes of your riskiest flow, and a state machine for anything with a lifecycle.
