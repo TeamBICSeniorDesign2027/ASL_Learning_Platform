@@ -313,13 +313,8 @@ Mark the decisions the peer review changed, and reference the D0 decision log ra
  2) We chose React JS over Vanilla JavaScript because it'll be more scalable in terms of the development of the user interface of our application.
  3) We chose TensorFlow as our Python AI/ML framework as one of our team members has experience with TensorFlow, it can handle larger models more efficiently, and can integrate with TFLite which allows for distribution of trained models. 
  4) We chose Azure as our final deployment of our app because more than one member of our team has experience using Azure.
- 5) 5
- 6) 6
- 7) _7 maybe_
- 8) _8 maybe_
- 9) _9 maybe_
- 10) _10 maybe_
-
+ 5) We chose web application architecture over desktop application as web application architecture offers more portability, is easier to develop for, and offers many native frameworks and APIs (e.g. MediaDevices for webcam) to aid in developement.
+ 6) We chose MediaPipe over OpenCV, as OpenCV uses significantly more resources and is not designed for web applications
 
 # Peer design review notes. 
 see docs/high_level_design/Peer_Review_Notes.md
