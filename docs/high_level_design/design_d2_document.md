@@ -292,16 +292,16 @@ One row per requirement, functional and non-functional: ID and short text, prior
 
 | ID | Requirement | F/NF | Priority | Design Elements | How Addressed |
 | ---| ---         | ---  |  ---     | --- | --- |
-|1|Return prediction in less than 5 seconds|NF|High|Appropriate ML Model ????|We will implement model that can output a prediction in a timely manner|
+|1|Return prediction in less than 5 seconds|NF|High|Appropriate ML Model|We will implement model that can output a prediction in a timely manner|
 |2|Be compatible with all fingerspelled letters of the alphabet and 50 signs in addition|F|High|Appropriate ML Model?|We will implement (a) model(s) that can determine the alphabet + 50 signs|
 |3|Display error message and prompt reinput on improper input|F|High|Input Validation (Input Processing)|NaN values in landmarks will prompt error message and reinput|
 |4|Be able to extract landmarks from webcam footage|F|High|MediaPipe|MediaPipe can determine facial and hand landmarks from images|
-|5|Be able to accurately (~85%) predict signs that involve motion|NF|Medium|Input Processing and ML Model (???)|Input processing should handle a sequence of landmarks (to simulate movement), and the ML Model should be able to form a prediction based on a sequence of landmarks|
-|6|Achieve overall accuracy of roughly 85%|NF|High|ML Model???|We will implmement an ML model that is accurate enough to classify signs correct 85% of the time|
-|7|Display confidence and sign accuracy along with prediction|F|High|TODO|TODO|
+|5|Be able to accurately (~85%) predict signs that involve motion|NF|Medium|Input Processing and ML Model|Input processing should handle a sequence of landmarks (to simulate movement), and the ML Model should be able to form a prediction based on a sequence of landmarks|
+|6|Achieve overall accuracy of roughly 85%|NF|High|ML Model|We will implmement an ML model that is accurate enough to classify signs correct 85% of the time|
+|7|Display confidence and sign accuracy along with prediction|F|High|UI|UI displays results of model prediction|
 |8|Display 'Processing...' icon when actively processing|F|Medium|UI|The UI will, on submission, display Processing... icon until a response is received from Results Processing|
 |9|Be able to handle multiple users simultaneously|F|High|Queued requests|Queueing requests will allow the model to not be overwhelmed and predict sequentially, even on simultaneous inputs|
-|10|Support both left and right-handed signers|F|High|ML Model???|We will implement a model that can accurately infer signs from right handed and left handed input|
+|10|Support both left and right-handed signers|F|High|ML Model|We will implement a model that can accurately infer signs from right handed and left handed input|
 
 # Design rationale. 
 Six to 10 entries for the significant D1 and D2 decisions, each in the form 
