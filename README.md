@@ -1,2 +1,2 @@
-# senior_design
-filler repo until we cement a project idea
+# ASL Learning Platform
+see project_description.md
