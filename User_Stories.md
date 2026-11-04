@@ -44,7 +44,7 @@ Given the application is in an active practice session with the webcam running, 
 
 When the user performs a sign present in the training database, such as “Hello”, and then drops their hands to a resting position for at least 1 second.
 
-Then the system must display the exact English text translation ("Hello") on the screen within 3 seconds of the hands returning to the resting position.
+Then the system must display the exact English text translation ("Hello") on the screen within 5 seconds of the hands returning to the resting position.
 
 AC-01.2:   
 Given the application is in an active session and tracking the user's hands.

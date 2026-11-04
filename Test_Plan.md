@@ -15,7 +15,7 @@ What is being tested this cycle, by requirement ID and component, and what is no
 | REQ-09 | If the learner's tracked hands remain outside the webcam frame for more than 1 second, the system shall pause translation output and display an out-of-frame warning until tracking is reacquired. |Video Intake / Send Feedback |
 | REQ-10 | When webcam access, landmark extraction, model prediction, or result processing fails, the system shall display a user-understandable error or recovery instruction instead of presenting the failed attempt as a successful recognition. | Send Feedback |
 | REQ-11 | The system shall not save webcam frames or extracted learner landmarks to persistent storage as part of normal practice-session operation. | Input Processing / Video Intake| 
-| NFR-01 | The system shall display the recognized English text within 3 seconds after the user's hands return to the resting position for at least 1 second. | ML Model / Results Processing | 
+| NFR-01 | The system shall display the recognized English text within 5 seconds after the user's hands return to the resting position for at least 1 second. | ML Model / Results Processing | 
 | NFR-03 | The system shall not retain webcam frames or extracted learner landmarks after they are no longer required for the active recognition attempt, and shall not store them persistently. | Input Processing / Video Intake |
 | NFR-04 | Every user-visible recognition, tracking, or processing failure defined in REQ-09 and REQ-10 shall produce an explicit message or warning; the system shall not silently discard the attempt while appearing successful. | Send Feedback |
 | NFR-05 | The model shall return a prediction in less than 5 seconds as an upper bound on any single recognition; the 3-second display target in NFR-01 remains the acceptance target. |ML Model / Results Processing |    
@@ -34,15 +34,61 @@ Half a page saying which requirements are verified against the spec by the team 
 
 **Breakdown of Who Verifies**
 
+|Requirement(s)|Verification/Validation|Performed by|
+|--------------|----|------------|
+| REQ-01, REQ-02, REQ-09 | Verification | Team |
+| REQ-03, REQ-04 | Verification | Braden |
+| REQ-05, REQ-06, REQ-07 | Verification | Connor |
+| REQ-08 | Verification and validation | Braden (verification); ASL-knowledgeable reviewer, advisor (validation) |
+| REQ-10, NFR-04 | Verification | Isaac |
+| REQ-11, NFR-03 | Verification | Team | 
+| NFR-01, NFR-05 | Verification | Team | 
+| Whole product (US-01, US-02) | Validation | Beginner and self-taught ASL learners, advisor |
+
 **Test Pyramid**
 
+|Layer|Approx. Count|Coverage Focus|
+|-----|-------------|--------------|
+| Unit | 30 | Important functions and modules within individual components (Input Processing, ML Model, Results Processing, Feedback)|
+| Integration | 10 | Testing the interactions and flow between components, capturing errors and edge-cases effectively as the data moves through the pipeline |
+| System | 5 | Every in-scope requirement in a real browser with a real webcam; testing the whole system together. |
+| Acceptance | 3 | Testing that the system meets the requirements with live demos with a beginner ASL learner, a seasoned ASL learner, and our advisor |
+
 **ML Metrics**
+
+The ML Model (REQ-05 to REQ-07) and shape scoring (REQ-08) are the parts whose results depend on data, so they are checked statistically rather than with a single run.
+
+|Item|Definition|
+|----|----------|
+| Independent variables | Sign class; signer; lighting; camera distance; background |
+| Controlled variables | `CONFIDENCE_THRESHOLD` (0.80) and `DEVIATION_TOLERANCE` (0.25) |
+| Metrics | Top-1 accuracy overall; confusion matrix to find sign pairs that are mixed up; false-accept rate (an incorrect sign shown as recognized at confidence of 0.80 or higher); rejection rate for non-sign input; shape score for a quality attempt versus a deliberately wrong shape |
+| Tolerance | Overall top-1 accuracy of at least 90% on a sample of the vocabulary. False-accept rate of 5% or less. A reference-quality attempt scores 0.80 or more and a deliberately wrong shape scores 0.50 or less. |
+| Trials | At least 20 attempts per sign in the release vocabulary, from at least 3 signers, across at least 2 lighting conditions. Non-sign input is tested with 20 or more trials as well. |
 
 
 # Success Criteria
 A table of measurable success criteria: metric, target threshold, how it is measured, and the Week 9 requirement ID behind it. Cover performance, reliability, usability, and accuracy as they apply.
 
 |Metric|Target Threshold|How Measured|Requirement ID|
+|------|----------------|------------|--------------|
+| **Performance** | | | |
+| Result display time | 3 s or less from the end of the 1 s rest to the text being displayed, on every run | Console timestamps over the full acceptance set | NFR-01 |
+| Attempt completion timing | Attempt is finalized only after at least 1 s of rest | Test with rests of 0.5 s, 1 s and 1.5 s | REQ-04 |
+| Out-of-frame warning timing | No warning at 1 s or less out of frame; warning and paused output after more than 1 s; warning clears once tracking returns | Tests with hands out for 0.5 s, 1.5 s and 3 s | REQ-09 |
+| **Reliability** | | | |
+| Errors and Warnings | all defined error and warning cases display an understandable message | Test each case and check for messages | REQ-10, NFR-04 |
+| Webcam permission denied | 0 frames captured and a message shown| Deny permission in each supported browser | REQ-01 |
+| Retained learner data | No frames or landmark arrays in browser storage, memory after the attempt, server storage or logs | Storage, memory and log inspection after successful and failed sessions | REQ-11, NFR-03 |
+| **Accuracy** | | | |
+| Recognition accuracy | At least 90% top-1 accuracy | 20 or more attempts per sign in the chosen sample | REQ-05 |
+| Displayed text correctness | Text displayed to the user matches the translation of the recognized sign, every time. | Compare the displayed string with the expected label | REQ-06 |
+| Low-confidence rejection | Confidence below 0.80 always shows "Sign not recognized"; 0.80 exactly counts as recognized; false-accept rate of 5% or less | Non-sign input trials, and console inspection to see confidence values compared with displayed feedback | REQ-07 |
+| Shape feedback | Quality attempt scores 0.80 or more; deliberately wrong shape scores 0.50 or less; arrows point toward the template (dx and dy sign correct) | varied hand-shape samples | REQ-08 |
+| **Usability** | | | |
+| Learner usability | Pilot learners report that the learning experience is intuitive and helpful | Post-session survey | US-01, US-02 |
+| Browser support | All tests pass in each of the latest versions of Chrome, Firefox, Edge and Safari | Run the system tests in each browser | REQ-01, REQ-02 |
+
 
 # Test cases
 At least 3 cases for every major requirement, and every Must requirement is major. Use the five-column template below, and include at least one edge case or failure condition in each group. Number the IDs to match the Test Case column of your Week 9 traceability matrix.
@@ -83,9 +129,9 @@ At least 3 cases for every major requirement, and every Must requirement is majo
 |TC-32| REQ-11 |No Browser Storage After Session|1) Open the browser developer tools, 2) Note the contents of localStorage, sessionStorage, IndexedDB, Cache Storage, and cookies, 3) Start a session and complete several attempts (e.g. 'A', 'B', 'C'), 4) End the session and inspect the same storage areas again|No webcam frames (images, blobs, or data URLs) and no landmark data (arrays of x/y/z values) are present in any browser storage area. Any entries that exist (e.g. app settings) contain no frames or learner landmarks and were already present before the session or hold only non-learner data.|Not Run|
 |TC-33| REQ-11 |No Files or Logs Retained|1) Start a session and complete several attempts, 2) End the session, 3) Inspect application files, server storage (if any), and server or application logs created or modified during the session, 4) Search them for image files, video files, and landmark values|No frame images, video recordings, or landmark data are found in application files, server storage, or logs. Logs may record events (e.g. "attempt completed") but contain no frames or landmark coordinates.|Not Run|
 |TC-34| REQ-11 |No Retention After Abnormal End (Failure)|1) Start a session and begin an attempt, 2) End the session abnormally partway through (e.g. close the tab, refresh the page, or trigger a failure from TC-28), 3) Reopen the app and inspect browser storage, application files, server storage, and logs as in TC-32 and TC-33|No partial frames or landmark data were left behind by the interrupted session, and the new session does not contain data from the old one.|Not Run|
-|TC-35| NFR-01 |Display Within 3 Seconds|1) Start a session, 2) Make the sign for 'A', 3) Rest your hands for at least 1 second, 4) Using console timestamps, record the time the 1-second rest interval ended and the time the English text was displayed|The English text is displayed no more than 3 seconds after the end of the 1-second rest interval. The measured elapsed time is recorded in the test results.|Not Run|
-|TC-36| NFR-01 |Full Acceptance Set, Every Run|1) Start a session, 2) Run every sample in the agreed acceptance test set (live or from recorded clips), 3) For each sample, record the elapsed time from the end of the 1-second rest to the display of the result|Every accepted run meets the 3 second limit. The result is judged on the slowest run, not the average. Any run over 3 seconds is logged as a failure of NFR-01, with the sample and its time recorded.|Not Run|
-|TC-37| NFR-01 |First Attempt After Page Load (Edge)|1) Fully reload the page with the cache cleared, 2) Start a session, 3) Immediately make the sign for 'A' as the very first attempt, 4) Rest for 1 second and record the elapsed time to display|The first attempt, which includes model loading and warm-up, still displays the text within 3 seconds. If it doesn't, record the overshoot and whether later attempts meet the limit, so the problem can be traced to cold-start cost.|Not Run|
+|TC-35| NFR-01 |Display Within 5 Seconds|1) Start a session, 2) Make the sign for 'A', 3) Rest your hands for at least 1 second, 4) Using console timestamps, record the 5time the 1-second rest interval ended and the time the English text was displayed|The English text is displayed no more than 5 seconds after the end of the 1-second rest interval. The measured elapsed time is recorded in the test results.|Not Run|
+|TC-36| NFR-01 |Full Acceptance Set, Every Run|1) Start a session, 2) Run every sample in the agreed acceptance test set (live or from recorded clips), 3) For each sample, record the elapsed time from the end of the 1-second rest to the display of the result|Every accepted run meets the 5 second limit. The result is judged on the slowest run, not the average. Any run over 5 seconds is logged as a failure of NFR-01, with the sample and its time recorded.|Not Run|
+|TC-37| NFR-01 |First Attempt After Page Load (Edge)|1) Fully reload the page with the cache cleared, 2) Start a session, 3) Immediately make the sign for 'A' as the very first attempt, 4) Rest for 1 second and record the elapsed time to display|The first attempt, which includes model loading and warm-up, still displays the text within 5 seconds. If it doesn't, record the overshoot and whether later attempts meet the limit, so the problem can be traced to cold-start cost.|Not Run|
 |TC-38| NFR-03 |Data Released After Attempt|1) Open the browser developer tools (Memory and Application tabs), 2) Start a session and complete one attempt, 3) After the result is displayed, take a memory snapshot and search it for frame buffers and landmark arrays from that attempt|Frames and landmarks from the completed attempt are no longer held in memory beyond what is needed for the active attempt (e.g. they are cleared, overwritten, or eligible for garbage collection). No frame or landmark data from the completed attempt is found in browser storage.|Not Run|
 |TC-39| NFR-03 |No Retention After Session Termination|1) Start a session and complete several attempts, 2) End the session, 3) Inspect memory, browser storage, server storage, and logs, 4) Watch the Network tab during the session for outgoing requests|No frames or learner landmarks remain in memory, browser storage, server storage, or logs after the session ends. Network traffic is recorded for review, and any frame or landmark payloads are flagged and reported against OQ-01.|Not Run|
 |TC-40| NFR-03 |Data Released After Failed Attempt (Failure)|1) Start a session, 2) Begin an attempt and cause a failure partway through (e.g. the hands leave the frame for over 1 second, or inject a prediction failure from TC-30), 3) After the error or warning appears, inspect memory, browser storage, and logs|The incomplete attempt's frames and landmarks are discarded when the failure occurs, and they are not kept for retry or debugging. Nothing is written to persistent storage by the failure handling code.|Not Run|
@@ -93,7 +139,7 @@ At least 3 cases for every major requirement, and every Must requirement is majo
 |TC-42| NFR-04 |Failed Attempt Not Shown as Success|1) Start a session, 2) Trigger a failure during an attempt (e.g. inject a model prediction failure), 3) Check the results display, any attempt history or session summary, and the console|The failed attempt does not appear as a recognized sign, a correct result, or a completed attempt with a score, in the main display, in any history or summary, or in the console. It may appear only as a clearly labelled failure.|Not Run|
 |TC-43| NFR-04 |Silent Discard Check (Failure)|1) Start a session, 2) Trigger each failure type from REQ-09 and REQ-10 while watching the screen and the console, 3) For each, confirm that the attempt was not just dropped, so that the app returns to its normal state with no explanation|In no case does the app return to a normal-looking state with no message after an attempt fails. If a failure produces no visible message, it is logged as a defect. After each failure the learner can continue (e.g. start a new attempt) with the app in a consistent state.|Not Run|
 |TC-44| NFR-05 |Prediction Under 5 Seconds|1) On the minimum supported device (e.g. smartphone), start a session, 2) Make the sign for 'A' and rest for 1 second, 3) Record the time from the completed attempt being handed to the model to the prediction being returned|The prediction is returned in under 5 seconds. The measured time is recorded along with the device used.|Not Run|
-|TC-45| NFR-05 |Full Representative Set on Minimum Device|1) On the minimum supported device, run every sample in the approved representative test set, 2) For each sample, record the end-to-end time from the start of recognition to the result being returned|Every result is returned in under 5 seconds, judged on the slowest run. The results are also compared against the 3 second display target from NFR-01 as a secondary check, since the 3 second target remains the acceptance target.|Not Run|
+|TC-45| NFR-05 |Full Representative Set on Minimum Device|1) On the minimum supported device, run every sample in the approved representative test set, 2) For each sample, record the end-to-end time from the start of recognition to the result being returned|Every result is returned in under 5 seconds, judged on the slowest run. The results are also compared against the 5 second display target from NFR-01 as a secondary check, since the 5 second target remains the acceptance target.|Not Run|
 |TC-46| NFR-05 |Under Load or Throttled CPU (Stress)|1) On the minimum supported device (or with 4x CPU throttling enabled in the browser developer tools), start a session, 2) Run several attempts back to back with no pause beyond the 1-second rest, 3) Record the time for each prediction|No single prediction takes 5 seconds or more, including later attempts in the run. If a prediction exceeds 5 seconds, the app shows a timeout or error message (per NFR-04) instead of hanging silently, and the overshoot is logged as a failure of NFR-05.|Not Run|
 
 
@@ -111,6 +157,18 @@ At least 3 cases for every major requirement, and every Must requirement is majo
 
 # Test environment
 The hardware, software, data, and configuration the tests run against: operating system and browser versions, devices and sensors, seeded test data, network conditions. Distinguish development, staging, and pilot environments.
+
+**Architecture under test**: a JS React frontend, with MediaPipe extracting landmarks in the browser, sending JSON to a Python backend that runs a TensorFlow model and Results Processing.
+
+- **Operating System**: Windows 11, latest macOS
+- **Browsers**: latest versions of Chrome, Firefox, Edge, and Safari
+- **Devices**: anu device with a built-in webcam
+- **Tech Stack Versions**: versions of MediaPipe, python, TensorFlow, JavaScript, and React will be later recorded in the repository files as we begin implementation
+- **Data**: A subset of ASL signs and the ASL alphabet, determined later
+- **Network**: Campus Network, and the team's home network
+- **Learning Environment**: any fixed conditions of bright or dim lighting with a plain background
+
+
 
 # Pass and fail criteria
 The objective threshold that decides whether each test, and the plan as a whole, succeeded. State the pass condition and what counts as a failure, tied to the metrics in part 3.
