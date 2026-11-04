@@ -231,15 +231,79 @@ The objective threshold that decides whether each test, and the plan as a whole,
 # Milestone
 A table of milestone, test activity, owner, and evidence, placing each layer against your Week 8 milestones: unit and integration during sprints, system and acceptance before reviews and demos.
 
-|Milestone|Test Activitiy|Owner|Evidence|
+
+| Milestone | Test Activity | Owner | Evidence |
+|-----------|---------------|-------|----------|
+| **M1, Final Design Demonstration** (November 2026) | **Plan review.** Present the project plan. | Team | Test_Plan.pdf; instructor and TA feedback |
+| **Sprint 1**, Tasks 1 to 4 | **Unit (about 10).** Landmark extraction with valid, no-hand, and partial-hand input (TC-7 to TC-9). Rest-interval detection at 0.5 s, 1 s, and 1.5 s, plus the 30 s cap (TC-10 to TC-12). Model loading and classification of known samples in the backend. Candidate-model benchmark recording size, speed, and accuracy (risks R1, R4, R5). | Braden (Input Processing); Connor (backend); Isaac (model benchmark) | Unit test report committed to the repository; console captures of landmark output; model comparison table |
+| **Sprint 2**, Task 5 | **Integration (about 3).** Video Intake to Input Processing to ML Model, end to end for fingerspelling. Covers session start and stop (TC-4, TC-5), classification of known and unsupported input (TC-13 to TC-15), and backend-down handling (TC-30). | Isaac (Task 5 owner), with Connor and Braden | Integration test log; TC statuses updated in Test_Plan.md; defects logged with TC ID |
+| **Sprint 3**, Tasks 6 to 10 | **Unit (about 14).** English text lookup and exact-match display (TC-16 to TC-18). Confidence threshold including exactly 0.80 (TC-19 to TC-21). Shape scoring, arrow direction, and the missing-reference case (TC-22 to TC-24). **Integration (about 2).** Backend result through the pipeline to the UI, timed against the display limit (TC-35). | Isaac (text translation); Braden (shape scoring); Connor (pipeline and confidence threshold) | Unit test report; integration log; first display-time measurements |
+| **M2, Partial Prototype Test** (January 2027) | **System run 1 (partial scope).** Privacy cases first: no stored frames or landmarks (TC-32 to TC-34). Then permission and session cases (TC-1 to TC-6), TC-7 to TC-15, and TC-28 and TC-30. First prediction-time measurement (TC-44). Chrome only. | Each member runs the cases for their own component; Team for TC-1 to TC-6 and TC-32 to TC-34 | Results log with Status updated for every case run; TC-44 time and device recorded; defect list with no open Critical defects |
+| **Sprint 4**, Task 11 | **Integration (about 3).** UI shows text and shape score together. Out-of-frame warning and recovery (TC-25 to TC-27). All five failure states and the silent-discard checks (TC-28 to TC-31, TC-41 to TC-43). | Isaac (errors, NFR-04); Team (REQ-09) | Integration log; screenshots of each error and warning state |
+| **M3, Full Prototype Test** (February 2027) | **System run 2.** Full set TC-1 to TC-46 on Chrome. Browser-sensitive cases (TC-1 to TC-6, TC-26, TC-32, TC-35) on Edge, Firefox, and Safari. **ML trials:** 20+ attempts per sign, 3+ signers, 2+ lighting conditions, plus 20+ non-sign trials. Timing cases (TC-35 to TC-37, TC-44 to TC-46) on the minimum device. **Acceptance session 1:** advisor demo, including validation of shape feedback (REQ-08). | Connor (ML trials); Braden (REQ-03, REQ-04, REQ-08); Isaac (REQ-10, NFR-04); Team (browsers, privacy, timing) | Full results log; confusion matrix; timing log with slowest run per case; browser matrix; advisor feedback notes |
+| **Sprint 5**, Tasks 12 to 17 | **Unit (about 6) and integration (about 2)** for the new full-sign endpoint, model switch, and translator outputs. New TC IDs for the full-sign model are written before the build and logged in the traceability matrix and the technical specification's version log. **Regression:** after every merge, rerun TC-13, TC-16, TC-21, TC-30, TC-35, and TC-32. | Isaac (endpoint, translator); Connor (pipeline); Braden (UI switch, translator outputs) | Unit and integration report; regression log per merge; updated Test_Plan.md and traceability matrix |
+| **Task 18** | **System run 3.** Whole flow with fingerspelling and the small sign dataset. | All | Whole-flow results log; defect list |
+| **M4, Full Test** (March 2027) | **System run 4.** Full set TC-1 to TC-46 plus new full-sign cases, in all four supported browsers. ML trials rerun for both models. Timing on the minimum device. **Acceptance sessions 2 and 3:** beginner learner and seasoned ASL learner, each followed by the post-session survey. Evaluate the plan-level pass criteria. | Team; Connor (ML trials); Braden (survey and acceptance sessions) | Final results log; survey forms with averages; defect log with 0 open Critical or High; completed plan-level pass and fail checklist |
+| **Protected buffer** (3/29/27 to the Expo) | **Fix and retest.** Each failed case and its whole requirement group are rerun, and the full ML trial set is rerun if the model or thresholds changed. | Owner of the failing component | Defect closure log; retest statuses |
+| **M5, Final Expo Demonstration** (April 2027) | **System run 5 (dress rehearsal).** Smoke set (TC-1, TC-4, TC-13, TC-16, TC-21, TC-26, TC-30, TC-32, TC-35) on the demo device, with venue-like network and lighting. Project-level definition of done checked. | Team | Smoke checklist; signed definition-of-done checklist; observation notes from audience use |
+
 
 # Definition of done
 A checklist a feature must meet before your team calls it complete, and a project-level version of the same: tests, review, documentation, open defects, and sign-off.
 
+## Feature-level checklist
 
+**Tests**
+- Every test case traced to the feature's requirement ID has a Pass status.
+- Each requirement has at least 3 cases, including at least one edge case or failure case.
+- The unit tests for the feature's code pass on the current main branch, and the integration tests for its component interactions pass.
+- Every metric the feature is tied to meets its pass threshold in the Pass and fail criteria section.
+- If the feature touches webcam frames or landmarks, the retention cases (TC-32 to TC-34, TC-38 to TC-40) pass and 0 frames or landmark arrays are found in storage, memory, or logs.
 
+**Review**
+- The code was reviewed through a pull request by at least one teammate who did not write it, and every review comment is resolved.
+- The change is merged into the main branch with no failing checks.
+- Every failure path in the feature shows a user-visible message and none ends in a crash, freeze, or silent discard.
 
- 
+**Documentation**
+- The code has comments or a short description explaining what it does.
+- Test_Plan.md has the current Status for every affected case, with the measured values, browser, and device recorded.
+- Any new, changed, or renumbered TC IDs are updated in the traceability matrix and logged in the technical specification's version log.
+- Any thresholds, versions, or datasets the feature depends on are recorded in the repository.
+
+**Open defects**
+- There are 0 open Critical or High defects against the feature.
+- Any open Medium or Low defects are logged with a description and either a planned fix or a documented deferral.
+
+**Sign-off**
+- The component owner confirms the feature meets its requirement and has all items above checked.
+- A second teammate confirms the evidence: the test log, the metric measurements, and the reviewed pull request.
+
+## Project-level checklist
+
+**Tests**
+- All test cases have the status Pass.
+- Every metric in the Success Criteria section meets its pass threshold on the final run.
+- System tests have been run and passed in all four supported browsers, and timing tests have passed on the minimum supported device.
+- The ML trials were run on the final model and pass.
+- The whole-flow test has passed on the final build.
+
+**Review**
+- All code in the main branch was merged by pull request with a teammate review.
+- Licensing of every pretrained model and third-party dependency has been checked and recorded.
+
+**Documentation**
+- Test_Plan.md is final, with Status and measured values recorded for every case.
+
+**Open defects**
+- 0 open Critical or High defects.
+- The defect log is complete, and each fixed defect lists the case that was rerun to confirm the fix.
+
+**Sign-off**
+- Each component owner has signed off on their own components.
+- The team has agreed that the project is ready for the demo, and the smoke set passed on the demo device.
+- The advisor has reviewed the results and has no unresolved concerns.
+
 
 If you add or renumber TC IDs, update the Week 9 traceability matrix and log the change in the technical specification's version log.
 
