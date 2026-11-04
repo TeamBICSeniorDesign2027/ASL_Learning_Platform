@@ -173,7 +173,60 @@ The hardware, software, data, and configuration the tests run against: operating
 # Pass and fail criteria
 The objective threshold that decides whether each test, and the plan as a whole, succeeded. State the pass condition and what counts as a failure, tied to the metrics in part 3.
 
+## Test-case
 
+| Status | Condition |
+|--------|-----------|
+| **Pass** | Every statement in the expected result is true, every measured value is inside its threshold, and no fail condition occurred. |
+| **Fail** | Any statement in the expected result is not met, or any fail condition occurred. |
+| **Blocked** | The case could not be run because a precondition was missing. A blocked case counts as not passed and must be unblocked and run. |
+| **Not Run** | The case has not been attempted yet. |
+
+**Any one of these makes a case Fail:**
+- The app crashes, freezes, or shows an unhandled exception to the learner.
+- A failed or unrecognized attempt is presented as a successful recognition (REQ-10, NFR-04).
+- A stale result from an earlier attempt is shown as the current result.
+- Any webcam frame or learner landmark data is found in persistent storage (REQ-11, NFR-03).
+- A measured time exceeds its limit on any single run.
+
+## Metric level
+
+| Metric | Pass | Fail | Req ID | Test cases |
+|---------------------------|------|------|--------|------------|
+| Webcam permission denied | 0 frames captured and an error message is shown | Any frame captured after denial, or no message shown | REQ-01 | TC-1 to TC-3 |
+| Attempt completion timing | Attempt finalizes only after a rest of 1.0 s or more; a 0.5 s rest triggers nothing; a session caps at 30 s | Attempt finalizes after a rest under 1 s, never finalizes, or exceeds the 30 s cap | REQ-04 | TC-10 to TC-12 |
+| Recognition accuracy | Top-1 accuracy of 90% or more over 20+ attempts per sign, 3+ signers, 2+ lighting conditions | Accuracy below 90% | REQ-05 | TC-13 to TC-15 |
+| Displayed text correctness | Displayed string matches the expected label in 100% of recognized attempts | Any mismatch, or a stale label shown | REQ-06 | TC-16 to TC-18 |
+| Low-confidence rejection | Confidence below 0.80 always shows "Sign not recognized" | Any below-threshold result shown as recognized or 0.80 exactly handled inconsistently | REQ-07 | TC-19 to TC-21 |
+| Shape feedback | Reference-quality attempt scores 0.80 or more; deliberately wrong shape scores 0.50 or less; arrow direction correct in 100% of samples; no undefined score ever shown | Any score outside these bounds, wrong arrow direction, or an invalid score displayed | REQ-08 | TC-22 to TC-24 |
+| Out-of-frame warning timing | No warning at 1.0 s or less out of frame; warning and paused output appear after more than 1.0 s (no later than 1.5 s); warning clears when tracking returns | Warning shown at 1.0 s or less, shown later than 1.5 s, output not paused, or warning does not clear | REQ-09 | TC-25 to TC-27 |
+| Errors and warnings | 5 of 5 defined failure cases (out of frame over 1 s, webcam, landmark extraction, model prediction, result processing) show an explicit, understandable message; 0 silent discards | Any failure case with no message, a blank or frozen screen, or a failure shown as success | REQ-10, NFR-04 | TC-28 to TC-31, TC-41 to TC-43 |
+| Retained learner data | 0 frames or landmark arrays found in browser storage, application files, server storage, or logs after normal, failed, and abnormally ended sessions; logs may contain events only | 1 or more frames or landmark arrays found in any location | REQ-11, NFR-03 | TC-32 to TC-34, TC-38 to TC-40 |
+| Result display time | English text displayed within 5 s of the end of the 1 s rest, on every run of the acceptance set, including the first attempt after page load | Any single run over 5 s | NFR-01 | TC-35 to TC-37 |
+| Prediction time | Prediction returned in under 5 s on every run, on the minimum supported device and under 4x CPU throttling; a timeout shows an error message instead of hanging | Any prediction at 5 s or more, or a silent hang | NFR-05 | TC-44 to TC-46 |
+| Browser support | All system tests pass in each of the latest two versions of Chrome, Firefox, Edge, and Safari | Any system test fails in any supported browser | REQ-01, REQ-02 | TC-1 to TC-6 (per browser) |
+
+## Plan level
+
+**Severity levels:**
+
+| Severity | Definition |
+|----------|------------|
+| Critical | Crash or freeze, a failure shown as success, or any retention of frames or landmarks |
+| High | An in-scope requirement is not met and there is no workaround |
+| Medium | A requirement is met but with degraded behavior |
+| Low | Cosmetic or minor issue with no effect on a requirement |
+
+**The test plan passes if all of the following are true:**
+1. All test cases have the status Pass. None are Fail, Blocked, or Not Run.
+2. Every metric in the table meets its pass threshold.
+3. There are no open critical or high defects.
+4. System tests have been run and passed in each of the four supported browsers.
+
+**The plan fails if any of the following is true:**
+- Any condition above is not met at the final test run.
+- Any Critical defect is open.
+- Recognition accuracy is below 90%.
 
 # Milestone
 A table of milestone, test activity, owner, and evidence, placing each layer against your Week 8 milestones: unit and integration during sprints, system and acceptance before reviews and demos.
