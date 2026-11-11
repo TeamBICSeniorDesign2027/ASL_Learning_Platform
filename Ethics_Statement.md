@@ -35,16 +35,31 @@ We don't currently have any committed code in git, so we don't have any committe
 # Licensing summary. 
 *A table of every third-party dependency, dataset, and creative asset: name, version, license (SPDX identifier), permissive or copyleft, and the obligation it places on you. State your project's own license, confirm it is compatible with every row, flag anything copyleft, and say what you decided.*
 
-|Dependency Name|Version|License (SPDX)|Permissive/Copyleft?|Obligation|
+The table below reflects the licenses for all confirmed dependencies while in the research and design phase of this project. As such, the list below is likely to change in development as we narrow down on certain components and expand on others. In addition, the software versions listed below reflect the most current stable versions. These may change in development as well.
+
+|Name|Version|License (SPDX)|Permissive / copyleft|Obligation|
+|---|---|---|---|---|
+|Python|v3.15.2|PSF-2.0|Permissive|Retain the Python license and notices when redistributing Python.|
+|React|v19.3|MIT|Permissive|Include the copyright and permission notice with copies or substantial portions.|
+|MediaPipe|v1.2.2|Apache-2.0|Permissive|Include the license and any applicable NOTICE file; preserve notices and identify modifications to redistributed files.|
+|TensorFlow|v2.21.0|Apache-2.0|Permissive|Include the license and any applicable NOTICE file; preserve notices and identify modifications to redistributed files.|
+|Python `requests`|v2.34.2|Apache-2.0|Permissive|If included or redistributed, include the license and applicable notices and identify modifications.|
 
 
-Our license:
+**Our project license:** None. We do not plan to make this project open source. Our project code is not licensed for reuse or redistribution.
 
 
 # Attribution list. 
 *Libraries with source URLs, code adapted from tutorials or other repositories with the source named, datasets with collection method and usage restrictions, and non-code assets such as icons, fonts, and images with author and license. Put the same list in a README section or a NOTICE file.*
 
- - attribute
+As mentioned above, the following list is a produce of the research and design phase. This list is expected to change in development.
+
+- **Python**: License information: https://docs.python.org/3/license.html (PSF-2.0)
+- **React**: Software source and license: https://github.com/facebook/react (MIT)
+- **MediaPipe**: Source and license: https://github.com/google-ai-edge/mediapipe (Apache-2.0)
+- **TensorFlow**: Source and license: https://github.com/tensorflow/tensorflow (Apache-2.0)
+- **Python `requests`**: Source and license: https://github.com/psf/requests (Apache-2.0)
+- **Researched Datasets:** [ASL Alphabet dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet); [ASL Fingerspelling competition](https://www.kaggle.com/competitions/asl-fingerspelling/code); [Google ASL Signs competition](https://www.kaggle.com/competitions/asl-signs); [Gusthema TensorFlow fingerspelling notebook](https://www.kaggle.com/code/gusthema/asl-fingerspelling-recognition-w-tensorflow); [Hoyeol Sohn ASL Signs solution](https://www.kaggle.com/competitions/asl-signs/writeups/hoyeol-sohn-1st-place-solution-1dcnn-combined-with); [Hoyeol48 inference notebook](https://www.kaggle.com/code/hoyso48/1st-place-solution-inference/output); [ColdSlim ASL TFLite model lead](https://huggingface.co/ColdSlim/ASL-TFLite-Edge); [ASL detection repository](https://github.com/ashgadala/american-sign-language-detection); [Kaggle ASL Signs model lead](https://huggingface.co/sign/kaggle-asl-signs-1st-place). So far, no decision has been reached on a dataset. Attributions will be updated when datasets are confirmed.
 
 
 # AI-use disclosure. 
@@ -54,57 +69,14 @@ Our license:
 
 |Tool|Used by|Task|Column|How verified|
 |----|-------|----|------|------------|
-|GitHub Copilot|Member name|Boilerplate for X|Generally OK|Reviewed line by line; unit tests pass
-
-
-
-
+|GitHub Copilot|Isaac Dowdy|Brainstorming ideas|Generally OK|Used suggestions as launching points for discussion and further research.|
+|GitHub Copilot|Isaac Dowdy|Creating rough drafts of documentation from our decisions|Generally OK|Reviewed and edited the text to ensure it reflected our decisions and stayed consistent  with other documentation.|
 
 
 
 For this project, the architecture, data model, priorities, and design rationale were the team's own
 
-Signed,
+Signed, 
+
 Connor Slutsky,
-
-
-
-
-
-
-
-
-
-Suggestions
-
-Build the dependency and asset list from the actual files (package.json, requirements.txt, platformio.ini, the assets folder) and look up each license on the SPDX list rather than from memory.
-
-Run the security audit before you write it up. Search the history, not only the current files, and say what you fixed.
-
-Be specific about storage. "Encrypted at rest on Neon, readable only by the API service role, deleted by the 30-day job" is an answer; "stored securely" is not.
-
-Reconstruct AI use member by member. If a use falls in the "not a substitute for" column, say what you did about it.
-
-Consent is not implied by use. Say where and how a user is asked, and what they are told.
-
-
-Grading 
-
-Privacy and security
-Specific, accurate answers for every data flow, the three common security gaps addressed by name, the git history searched, and retention and deletion described as mechanisms rather than intentions
-30 points
-
-
-Licensing and attribution
-Every dependency, dataset, and asset listed with its license and the obligation it creates; your own license stated and compatible; copyleft decisions recorded; attribution in the repository, including adapted snippets
-30 points
-
-
-AI-use disclosure
-An honest account by member and task, sorted with the two-column framework, each use stating how the output was verified, with a confirmation line signed by every member
-25 points
-
-
-Clarity and completeness
-All five sections present and in order, specific to the project, cross-referenced to the Week 9 schema and stack table, and consistent with the Week 3 constraints essay
-15 points
+Isaac Dowdy,
