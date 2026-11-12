@@ -71,6 +71,7 @@ As mentioned above, the following list is a produce of the research and design p
 |----|-------|----|------|------------|
 |GitHub Copilot|Isaac Dowdy|Brainstorming ideas|Generally OK|Used suggestions as launching points for discussion and further research.|
 |GitHub Copilot|Isaac Dowdy|Creating rough drafts of documentation from our decisions|Generally OK|Reviewed and edited the text to ensure it reflected our decisions and stayed consistent  with other documentation.|
+|Claude|Connor Slutsky|Help format ideas into tabular format|Generally OK|Carefully reviewed output to ensure accuracy|
 
 
 
