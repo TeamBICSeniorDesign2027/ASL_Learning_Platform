@@ -1,0 +1,9 @@
+# Peer reviews. 
+_Each student views at least three other teams' recorded presentations and writes a review of each: a constructive suggestion or a clarifying question, one sentence to a paragraph or more. Enter each in the reviewed team's first empty Peer-Reviews column, ending with your email address, and review teams listed close to your own row. Then submit on Canvas the list of reviewed project names with your comments._
+
+
+| Team | Summay | Review |
+| ---- | ------ | ------ |
+| DigiDarts | Automatic dart-scoring system via computer vision with worldwide leaderboard via Web Application | Clarifying question - DigiDarts is intended to be a game that anyone can play around the world, but depends on static camera setup for the score of the game to be automatically tallied. What sort of camera is necessary for the scoring to work properly? How much would a camera like that cost? I believe it was mentioned that some 3D-printed fixtures could be used for mounting, but what happens to those that don't have 3D printers? Are they unable to use the product? |
+| Versimil | AI-Powered NPC dialogue module for Unity game engine | Clarifying question - It was mentioned that you will have to address stereotypical portrayals from the models, but how do you go about meaningfully addressing that when current models already struggle with cultural bias? Additionally, are there size constraints for the model, so as to prevent games size requirements from becoming even more massive? If the module is used extensively within a game, how would that affect the size of the game (e.g. 1 NPC vs. 100 NPCs with AI-powered dialogue)? |
+| Agentic Upgrades for GE Appliances | Use agents to speed up the PR reviewal process (I think?) | Clarifying question - who will be reviewing the reviewers? How much would the probabibility of bugs/security problems being merged drop? | 
