@@ -12,5 +12,3 @@ The first thing that we have to be conscious of is being correct, as none of us 
 
 ## Security  
 The most important constraint would be data privacy, as we will need to access a user’s camera to detect their ASL signs in order to translate it into spoken language, so we must not store this visual data excessively or for longer than necessary. And since we’re likely going to be dependent on FOSS software, we must understand the risks of FOSS software and use the most updated versions of that software to prevent security vulnerabilities. And lastly, if we have to depend on an existing AI model to translate the ASL data to spoken language output, we should be careful about what data we’re feeding it if it’s not a locally deployed model. We want to reduce the risk of the data being compromised in the hands of whoever’s deploying the model by feeding it only necessary data, if we have to feed it any at all.   
-
-

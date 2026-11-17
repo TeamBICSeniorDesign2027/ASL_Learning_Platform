@@ -1,4 +1,4 @@
-# Design D1: ASL Learning Assistant
+# Design D2: ASL Learning Assistant
 
 Team: Braden Monnin, Connor Slutsky, Isaac Dowdy
 
