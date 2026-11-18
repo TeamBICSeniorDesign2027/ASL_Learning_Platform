@@ -1,4 +1,216 @@
 
+
+
+TDL - overall design notebook
+- [x] list out weeks and dates
+- [x] list out assignment due dates
+- [x] list out commits
+- [x] list out communications
+- [x] piece together any empty ones - when did i push a discussion board post?
+- [ ] meeting minutes for the one meeting we're missing, and for the meeting on 11/18/26
+- [ ] add meetings
+
+
+
+
+
+
+# Week 14 11/23/26 - 11/29/26
+
+Assignment #15 Project Advisor Assessments due Wednesday 11/25/26
+
+# Week 13 11/16/26 - 11/22/26
+
+Assignment 13 Team Oral Presentation, Recorded Video, and Peer Reviews due Wednesday 11/18/26
+
+Assignment 12 Presentation Draft and Documented Advisor Feedback due Wednesday 11/18/26
+
+commits
+connor - advisor feedback template 11/16/26
+connor - assignment 14 11/17/26
+
+comms
+11/16/26 - plan advisor feedback meeting, recording video, book room
+
+# Week 12 11/9/26 - 11/15/26
+
+Assignment 11 Ethics and Responsible Use Statement due Wednesday 11/11/26
+
+commits
+connor - ethics statement 11/9/26
+isaac - ethics statement 11/11/26
+braden - ethics statement 11/11/26
+
+connor - runsheet md 11/15/26
+
+comms
+11/9 - a11
+11/10 - init slideshow
+11/11 - finalize a11
+
+
+# Week 11 11/2/26 - 11/8/26
+
+Assignment 10 Test and Validation Plan Draft due Wednesday 11/4/26
+
+commits
+isaac - test plan 11/4/26
+braden - test plan - 11/4/26
+
+comms
+11/2, 11/3 - a10
+
+# Week 10 10/26/26 - 11/1/26
+
+Assignment 9 Requirements Document and Technical Specification Document due Friday 10/30/26 
+
+Assignment 8 Task List, Milestones, Timeline, and Effort Matrix due Wednesday 10/28/26
+
+commits
+connor - task list final 10/26/26
+
+isaac - req doc 10/30/26
+braden - tech spec 10/30/26
+
+connor - test plan.md 10/31/26
+
+comms
+10/26 - finalize a8
+10/27 - a9
+10/30 - finalize a9
+
+
+# Week 9 10/19/26 - 10/25/26
+
+commits
+connor - task list 10/25/26
+
+comms
+10/20 - new git repo/org
+10/21 - plan for ausiano meeting on 10/21
+10/23 - connor does a8, braden and isaac team up on a9
+
+# Week 8 10/12/26 - 10/18/26
+
+Assignment 7 Detailed System Design D2 and Peer Review Notes due Wednesday 10/14/26
+
+commits
+connor - d2 10/12/26
+isaac - d2 10/12/26
+braden - d2 10/13/26
+
+connor - peer review 10/14/26
+isaac - peer review 10/14/26
+
+comms
+10/12 - d2, brainstorm how to do peer review
+10/14 - peer feedback
+
+
+
+# Week 7 10/5/26 - 10/11/26
+
+Assignment 6 Detailed System Design D1 due Thursday 10/8/26
+
+commits
+isaac - updated d0 block diagram 10/7/26
+connor - d1 10/7/26
+
+connor - finish d1 10/8/26
+
+comms
+plan for meeting on 10/7/26
+10/8 share thoughts about d1 / ml model
+
+
+
+# Week 6 9/28/26 - 10/4/26
+
+Assignment 5 High-Level System Design D0 due Friday 10/2/26
+
+Assignment 4 User Stories and Use Cases due Monday 9/28/26 
+
+commits
+braden, connor, isaac - d0 10/2/26
+
+comms
+mostly d0 10/2/26
+
+# Week 5 9/21/26 - 9/27/26
+
+commits
+braden - user stories and use cases 9/24/26
+
+comms
+9/23 connor visit aurisano
+
+
+# Week 4 9/14/26 - 9/20/26
+
+Assignment 3 Advisor Selection and Design Constraints Essay due Friday 9/18/26
+
+commits
+connor - individual constriants essay 9/15/26
+
+connor - team contract, design notebook, 9/9 meeting notes 9/16/26
+braden - team contract contact 9/16/26
+isaac - team contract contact 9/16/26
+
+issac - design constraints essay 9/18/26
+
+comms
+9/16 aurisano agreed
+9/18 team contract approved
+
+# Week 3 9/7/26 - 9/13/26
+
+Assignment 2 Team Formation and Project Description due Wednesday 9/9/26
+
+commits
+braden - project topic (project_description.md) 9/9/26
+
+meeting on 9/9/26
+
+comms
+plan for first meeting 9/7 and 9/8
+team contract draft 9/8
+advisor brainstorming 9/10, 9/11
+9/13 reach out to aurisano
+
+
+# Week 2 8/31/26 - 9/6/26
+
+Assignment 1 Professional Biography due Wednesday 9/2/26
+
+commits
+connor - Initial commit 8/31/26
+connor - professional bio - 8/31/26
+
+isaac - professional bio 9/2/26
+
+braden - professional bio 9/3/26 
+
+connor - project_description.md and individual capstone assessments/ 9/4/26
+
+comms
+group chat created 9/2/26
+start thinking of list of ideas
+look at a2/a3
+
+
+8/31/26 - exchange idea documents with isaac
+9/2/26? - recruit braden from class
+9/2/26 - delete discussion board post
+
+# Week 1 8/24/26 - 8/30/26
+
+8/26/26? - create db post
+8/27/26 - isaac reached out in response to discussion board
+
+
+
+
+
 # 10/7/26 Meeting Minutes
 
 ### Attendance
