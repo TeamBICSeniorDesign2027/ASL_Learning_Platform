@@ -3,22 +3,23 @@
 
 | Slide No. | Slide | Speaker | Planned Relative Start Time |  Hand-Off line |
 | --------- | ----- | ------- | --------------------------- | -------------- |
-| 1 | Overview | SPEAKER | 0:00 | HAND |
-| 2 | People | SPEAKER | 0:40 | HAND |
-| 3 | Abstract | SPEAKER | 1:20 | HAND |
-| 4 | User Stories/Design | SPEAKER | 2:00 | HAND |
-| 5 | Constraints | SPEAKER | 2:40 | HAND |
-| 6 | Progress Review | SPEAKER | 3:20 | HAND |
-| 7 | Expected Accomplishments | SPEAKER | 4:00 | HAND |
-| 8 | Division of Work | SPEAKER | 4:40 | HAND |
-| 9 | Expected Demo | SPEAKER | 5:20 | HAND |
+| 1 | Overview | Isaac | 0:00 | "Next, let's introduce who we are..." |
+| 2 | People | Everyone | 0:20 | "Braden will now talk about our abstract..." |
+| 3 | Abstract | Braden | 0:40 | "Next, Isaac will talk about our User Stories and Design..." |
+| 4 | User Stories/Design | Isaac | 1:30 | "Now, Connor will introduce our constraints..." |
+| 5 | Constraints | Connor | 2:20 | "Next is Braden with the Progress Review..." |
+| 6 | Progress Review | Braden | 3:10 | "Isaac will now talk about our expected accomplishments..." |
+| 7 | Expected Accomplishments | Isaac | 3:50 | "Connor will now cover our division of work..." |
+| 8 | Division of Work | Connor | 4:30 | "And now, Braden will finish it off with our expected demo..." |
+| 9 | Expected Demo | Braden | 5:30 | N/A - End |
+**Final Time:** 6:00 
 
 
 | Speaking Role | Speaker |
 | ------------- | ------- |
-| ROLES | Braden | 
-| ROLES | Isaac |
-| ROLES | Connor | 
+| Abstract, Review of Progress, Expected Demo | Braden | 
+| Overview, User Stories/Diagrams, Expected Accomplishments | Isaac |
+| Constraints, Division of Work | Connor | 
 
 
 
@@ -36,10 +37,10 @@
 
 
 
-**Full Rehearsal:** 
+**Full Rehearsal:**  
 | Slide No. | Slide | Start Time | End Time |
 | --------- | ----- | ---------- | -------- |
-| 1 | Overview | START | END |
+| 1 | Overview | 0:00 | END |
 | 2 | People | START | END |
 | 3 | Abstract | START | END |
 | 4 | User Stories/Design | START | END |
