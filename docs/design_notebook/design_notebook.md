@@ -7,8 +7,9 @@ TDL - overall design notebook
 - [x] list out commits
 - [x] list out communications
 - [x] piece together any empty ones - when did i push a discussion board post?
-- [ ] meeting minutes for the one meeting we're missing, and for the meeting on 11/18/26
-- [ ] add meetings
+- [x] meeting minutes for the one meeting we're missing
+- [x] add meetings
+- [ ] meeting notes and on weeks for 11/18
 
 
 
@@ -82,12 +83,14 @@ comms
 
 # Week 9 10/19/26 - 10/25/26
 
+Meeting 3, with Aurisano on 10/21 
+
 commits
 connor - task list 10/25/26
 
 comms
 10/20 - new git repo/org
-10/21 - plan for ausiano meeting on 10/21
+10/21 - plan for advisor meeting on 10/21
 10/23 - connor does a8, braden and isaac team up on a9
 
 # Week 8 10/12/26 - 10/18/26
@@ -111,6 +114,8 @@ comms
 # Week 7 10/5/26 - 10/11/26
 
 Assignment 6 Detailed System Design D1 due Thursday 10/8/26
+
+system design catch-up meeting on 10/7/26
 
 commits
 isaac - updated d0 block diagram 10/7/26
@@ -169,7 +174,7 @@ Assignment 2 Team Formation and Project Description due Wednesday 9/9/26
 commits
 braden - project topic (project_description.md) 9/9/26
 
-meeting on 9/9/26
+idea generation meeting on 9/9/26
 
 comms
 plan for first meeting 9/7 and 9/8
@@ -207,6 +212,31 @@ look at a2/a3
 8/26/26? - create db post
 8/27/26 - isaac reached out in response to discussion board
 
+
+
+
+
+# 10/21/26 Meeting Minutes
+
+(Note: filled out on 11/18/26)
+
+### Attendance
+
+Braden, Connor, Isaac, Dr. Aurisano
+
+### Purpose
+
+Introduce ourselves to Dr. Aurisano and give an overview and a bit of feedback on our project idea
+
+### Decisions
+
+In order to have it so the workload is relatively split up so that everyone gets a little bit of progress, we can maintain a prioritized to-do list. We itemize what we need to do for the project into a list of tasks, and organize the list so that the highest priority is at the top of the list. Then as we finish tasks, we communicate, then we pick a task closer to the top of the list. 
+
+Aurisano is a fan of our project. It reminded her of [GestureGPT](https://arxiv.org/pdf/2310.12821), which is a model that can understand human gestures from a webcam and can translate those gestures to controls within an application (e.g. swiping to go to the next slide in a presentation). 
+
+### Tasks
+
+Maybe, if our workload lightens up, we can begin constructing that prioritized task list.
 
 
 
