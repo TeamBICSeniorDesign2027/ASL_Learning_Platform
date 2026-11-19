@@ -7,8 +7,7 @@
 
 # Summary Paragraph
 
-TODO
-
+In total I dedicated about 46 hours on various senior design assignments. The first four weeks were were mostly dedicated to team building, figuring out our project idea, and connecting to an advisor. After that, several weeks were dedicated to designing the system corresponding to our project idea. And lastly, several weeks were dedicated to the remaining filler elements or project management of the project - test plans, task list and milestones, requirements document and technical specification, ethics statement, and a presentation and feedback session.
 
 
 
@@ -23,6 +22,13 @@ TODO
 **Blockers:** 
 
 Assignment #15 Project Advisor Assessments due Wednesday 11/25/26
+
+
+
+
+
+
+
 
 # Week 13 11/16/26 - 11/22/26
 
