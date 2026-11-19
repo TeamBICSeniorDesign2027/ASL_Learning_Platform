@@ -10,8 +10,9 @@ _Meeting record: date, duration, attendees, format, and which version of the dec
  2) Isaac Dowdy
  3) Connor Slutsky
  4) Dr. Aurisano
-**Format:** We present the slideshow to her and record her comments during and after the presentation
-**Version Reviewd:** Final version
+
+**Format:** We present the slideshow to her and record her comments during and after the presentation     
+**Version Reviewd:** Final version   
 
 **Note:** We did have to wait some time for her to finish up helping someone else before she could provide feedback for our presentation.    
 
