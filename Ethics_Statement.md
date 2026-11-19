@@ -6,7 +6,7 @@ One document, Ethics_Statement.md, target 3 to 5 pages, committed to your reposi
 
 |Data Item|Source|Purpose|Consent|Storage|Access|Retention|
 |---------|------|-------|-------|-------|------|---------|
-|User Sign Reading Video|Webcam Footaeg|Used for determining signs of user landmark|Consent obtained when user allowed access to webcam|In memory|Access in memory (e.g. stored in variable)|Stored only in memory until landmarks can be obtained, then discarded|
+|User Sign Reading Video|Webcam Footage|Used for determining signs of user landmark|Consent obtained when user allowed access to webcam|In memory|Access in memory (e.g. stored in variable)|Stored only in memory until landmarks can be obtained, then discarded|
 |Landmarks|Determined from user sign footage|Needed as inputed for ML Model to predict sign and provide feedback|Consent obtained when webcam footage is enabled|In memory|Through variables, and also sent via API request (to ML Model)|Stored only until model can make the prediction adn score the hand accuracy. Once the results are obtained, the landmarks are discarded.|
 |Sign Labels|Output from ML Model|Prediction for the user's signs|Obtained when user enables webcam footage and uses application|In memory|Variable access|Stored until translated text (if necessary) is obtained, then discarded. If only predicting individual signs, these will be displayed to the user, then discarded.|
 |Confidence|Output from ML Model|Used to display to user for feedback|Consent obtained when user agrees to use applicaiton / enables webcam|In memory|Variable access, and displayed to user|Stored only until results are displayed to user, then discarded once the user moves on.|

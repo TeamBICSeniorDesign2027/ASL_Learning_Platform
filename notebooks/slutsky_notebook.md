@@ -1,16 +1,18 @@
 # Design notebook. 
 *One per student, committed as notebooks/lastname_notebook.md and uploaded as a PDF. One entry per week for Weeks 1 to 14, each giving what you worked on, the decisions you made, the hours it took, and what was blocking you. Close with a total-hours line and a summary paragraph, and label any entry you reconstructed after the fact.*
 
-**Total Hours:** TODO  
+**Total Hours:** 46    
+
+2+2+4+2+0+3+8+4+7+4+0+4+6
 
 # Summary Paragraph
 
 TODO
 
 
-# Week 14 11/23/26 - 11/29/26
 
-(Note: Created on 11/18)
+
+# Week 14 11/23/26 - 11/29/26
 
 ## Tasks
 
@@ -24,156 +26,118 @@ Assignment #15 Project Advisor Assessments due Wednesday 11/25/26
 
 # Week 13 11/16/26 - 11/22/26
 
-(Note: Created on 11/18)
-
 ## Tasks
+
+make presentation with team, record video with team, get advisor feedback with team, start on assignment 14 (due in Week 15), fill out advisor_feedback.md, finish run_sheet.md, put video and slides on sheets
 
 ## Decisions
 
-**Hours:** 
+Not really any this week, besides being receptive to the feedback. We mostly are reviewing a lot of our past decisions. 
 
-**Blockers:** 
+**Hours:** 6
 
-Assignment 13 Team Oral Presentation, Recorded Video, and Peer Reviews due Wednesday 11/18/26
+**Blockers:** None
 
-Assignment 12 Presentation Draft and Documented Advisor Feedback due Wednesday 11/18/26
 
-commits
-connor - advisor feedback template 11/16/26
-connor - assignment 14 11/17/26
 
-comms
-11/16/26 - plan advisor feedback meeting, recording video, book room
+
 
 # Week 12 11/9/26 - 11/15/26
 
-(Note: Created on 11/18)
+(Note: Created on 11/19)
 
 ## Tasks
 
+Contributions to the ethics statement - privacy summary, security summary, and self audit. Also got started on the powerpoint and the run sheet for assignments 12 and 13. 
+
 ## Decisions
 
-**Hours:** 
+None really, all of these were reiterating what we've already done. 
 
-**Blockers:** 
+**Hours:** 4
 
-Assignment 11 Ethics and Responsible Use Statement due Wednesday 11/11/26
+**Blockers:** None
 
-commits
-connor - ethics statement 11/9/26
-isaac - ethics statement 11/11/26
-braden - ethics statement 11/11/26
 
-connor - runsheet md 11/15/26
 
-comms
-11/9 - a11
-11/10 - init slideshow
-11/11 - finalize a11
+
 
 
 # Week 11 11/2/26 - 11/8/26
 
-(Note: Created on 11/18)
+(Note: Created on 11/19)
 
 ## Tasks
 
+none this week
+
 ## Decisions
 
-**Hours:** 
+only as it pertained to the test plan, mostly small ones
 
-**Blockers:** 
+**Hours:** 0
 
-Assignment 10 Test and Validation Plan Draft due Wednesday 11/4/26
+**Blockers:** None 
 
-commits
-isaac - test plan 11/4/26
-braden - test plan - 11/4/26
 
-comms
-11/2, 11/3 - a10
+
 
 # Week 10 10/26/26 - 11/1/26
 
-(Note: Created on 11/18)
+(Note: Created on 11/19)
 
 ## Tasks
 
+Finalized task list, got started on test plan (mostly the test cases)
+
 ## Decisions
 
-**Hours:** 
+Most of my decisions this week were the small decisions when doing the test plan, in terms of how to break up the tests.
 
-**Blockers:** 
+**Hours:** 4
 
-Assignment 9 Requirements Document and Technical Specification Document due Friday 10/30/26 
+**Blockers:** None 
 
-Assignment 8 Task List, Milestones, Timeline, and Effort Matrix due Wednesday 10/28/26
 
-commits
-connor - task list final 10/26/26
 
-isaac - req doc 10/30/26
-braden - tech spec 10/30/26
 
-connor - test plan.md 10/31/26
-
-comms
-10/26 - finalize a8
-10/27 - a9
-10/30 - finalize a9
 
 
 # Week 9 10/19/26 - 10/25/26
 
-(Note: Created on 11/18)
+(Note: Created on 11/19)
 
 ## Tasks
+
+assignment 8
 
 ## Decisions
 
-**Hours:** 
+I do assignment 8, and other two work on A9 together. For the task list, many small decisions and inferences were made in regards to how to go about development of the project, such as what the tasks are, what to do first, what the milestones were, roughly when we should be testing, etc.
 
-**Blockers:** 
+**Hours:** 7
 
-Meeting 3, with Aurisano on 10/21 
+**Blockers:** None
 
-commits
-connor - task list 10/25/26
 
-comms
-10/20 - new git repo/org
-10/21 - plan for advisor meeting on 10/21
-10/23 - connor does a8, braden and isaac team up on a9
+
 
 # Week 8 10/12/26 - 10/18/26
 
-(Note: Created on 11/18)
+(Note: Created on 11/19)
 
 ## Tasks
 
-D2 - external components, edge cases, design rationale
+D2 - external components, edge cases, and design rationale. Also retrieved peer review
 
 ## Decisions
 
 Our big decisions were in the design rationale - Python backend, React frontend, TensorFlow ML framework, Azure as possible cloud deployment, web application architecture, and MediaPipe to process landmarks. And also what the results processing and return feedback interfaces were. 
 
-**Hours:** 2
+**Hours:** 4
 
 **Blockers:** None
 
-Assignment 7 Detailed System Design D2 and Peer Review Notes due Wednesday 10/14/26
-
-commits
-connor - d2 10/12/26
-isaac - d2 10/12/26
-braden - d2 10/13/26
-
-connor - peer review 10/14/26
-isaac - peer review 10/14/26
-
-comms
-10/12 - d2, brainstorm how to do peer review
-10/14 - peer feedback
 
 
 
@@ -191,9 +155,10 @@ system design meeting on 10/7/26, work on d1
 
 From the meeting, we decided we should simplify our diagram because a lot of the components were too similar. From D1, I (with some input) fleshed out the ML model - we will probably find a pretrained model online somewhere. We will also probably implement it as a background service in Python. 
 
-**Hours:** 4
+**Hours:** 8
 
 **Blockers:** None
+
 
 
 
@@ -210,7 +175,7 @@ Work on high-level system design d0. I was in charge of the interface table.
 
 Our biggest one was the draft of our system architecture components. We also did the interface specifications, dataflow diagram, and architecture pattern, and decision log. 
 
-**Hours:** 2
+**Hours:** 3
 
 **Blockers:** None 
 
@@ -251,7 +216,7 @@ individual constraints essay, copy team contract to github, start design noteboo
 
 aurisano agreed to our team contract and to be our advisor
 
-**Hours:** 1
+**Hours:** 2
 
 **Blockers:** None
 
@@ -271,7 +236,7 @@ Idea generation meeting, team contract draft (in Word), advisor brainstorming
 
 We go with ASL to Text translator idea, We reach out to Aurisano as our first choice for advisor. 
 
-**Hours:** 2 
+**Hours:** 4
 
 **Blockers:** None 
 
@@ -291,7 +256,7 @@ Professional biography, repository created, start project_description.md
 
 Recruit Braden in class, include him on the idea generation task
 
-**Hours:** 1  
+**Hours:** 2 
 
 **Blockers:** None
 
@@ -309,7 +274,7 @@ Created a discussion board post to find a team, ,eet Isaac, join his team, and c
 
 Each of us create ideas separately, then next week we exchange and evaluate / follow-up about our ideas
 
-**Hours:** 1  
+**Hours:** 2  
 
 **Blockers:** None
 
